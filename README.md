@@ -1,4 +1,4 @@
-# Molecular Transport Phenomena Pre-Course
+# Process Dynamics & Control Pre-Course
 
 Welcome to the Process Dynamics & Control Pre-Course for MSc Chemical Engineering at TU Delft! This pre-course was designed to ensure every student is ready to take Process Dynamics & Control. 
 
