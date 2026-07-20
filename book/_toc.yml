@@ -1,0 +1,12 @@
+
+format: jb-book
+root: intro.md
+parts:
+  - caption: PDC Pre-Course
+    numbered: true  
+    style: numerical 
+    restart_numbering: true
+    chapters:
+      - file: content/input_state_variables.md
+      - file: content/linearization_process_models.md
+
