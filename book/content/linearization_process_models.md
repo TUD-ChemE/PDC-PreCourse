@@ -3,20 +3,20 @@
 ## Theory
 More complicated and comprehensive process models are often nonlinear. Unfortunately, nonlinear models are quite difficult to work in with directly when designing a controller for the process. To make this task easier, the nonlinear model is usually approximated as a **linear model** that is valid in the vicinity of a chosen steady state operating point. The steps for performing this linearization are shown below.
 
-### Step 1: Write the model as a function of states and inputs
+### Step 1: Write the model as a function of states and inputs {-}
 Suppose a state variable $x$ evolves according to a nonlinear differential equation that depends on one or more state variables and input variables. We write the right-hand side as a function $f$:  
 $
 \frac{dx}{dt} = f(x_1, x_2, \dots, u_1, u_2, \dots),
 $
 where $x_1, x_2, \dots$ are the state variables and $u_1, u_2, \dots$ are the input variables (manipulated and/or disturbance variables) that $f$ depends on.
 
-### Step 2: Determine the operating point
+### Step 2: Determine the operating point {-}
 The operating point is the steady state \\ $(\bar{x}_1, \bar{x}_2, \dots, \bar{u}_1, \bar{u}_2, \dots)$ around which we want to linearize. At this point, the process is at rest, so all derivatives are zero:  
 $
 0 = f(\bar{x}_1, \bar{x}_2, \dots, \bar{u}_1, \bar{u}_2, \dots) \equiv f_{ss}.
 $
 
-### Step 3: Expand $f$ in a multivariable Taylor series
+### Step 3: Expand $f$ in a multivariable Taylor series {-}
 Close to the operating point, $f$ can be approximated by its value at steady state, plus a correction term for every variable it depends on. Each correction term is the partial derivative of $f$ with respect to that variable evaluated at the operating point, multiplied by how far that variable has moved away from its steady-state value:  
 $
 f \approx f_{ss} + \left(\frac{\partial f}{\partial x_1}\right)_{ss}\!\!(x_1 - \bar{x}_1) + \left(\frac{\partial f}{\partial x_2}\right)_{ss}\!\!(x_2 - \bar{x}_2) + \dots + \left(\frac{\partial f}{\partial u_1}\right)_{ss}\!\!(u_1 - \bar{u}_1) + \left(\frac{\partial f}{\partial u_2}\right)_{ss}\!\!(u_2 - \bar{u}_2) + \dots
@@ -24,7 +24,7 @@ $
 
 This is simply a first-order Taylor expansion: we keep only the constant and linear terms, and discard all higher-order (quadratic and above) terms, which is justified as long as the true variables stay close to the operating point.
 
-### Step 4: Introduce deviation variables
+### Step 4: Introduce deviation variables {-}
 To simplify the notation, we define **deviation variables** that measure the distance of each variable from its steady-state value, denoted with a prime:  
 $
 x_1' = x_1 - \bar{x}_1, \qquad x_2' = x_2 - \bar{x}_2, \qquad u_1' = u_1 - \bar{u}_1, \qquad u_2' = u_2 - \bar{u}_2, \quad \dots
@@ -32,7 +32,7 @@ $
 
 Since $\bar{x}_1, \bar{x}_2, \dots$ are constants, we also have $\dfrac{dx}{dt} = \dfrac{dx'}{dt}$.
 
-### Step 5: Assemble the linearized equation
+### Step 5: Assemble the linearized equation {-}
 Using $f_{ss} = 0$ from Step 2, and substituting the deviation variables from Step 4 into the expansion from Step 3, we obtain the **linearized model**:  
 $
 \frac{dx'}{dt} = \left(\frac{\partial f}{\partial x_1}\right)_{ss}\!\!x_1' + \left(\frac{\partial f}{\partial x_2}\right)_{ss}\!\!x_2' + \dots + \left(\frac{\partial f}{\partial u_1}\right)_{ss}\!\!u_1' + \left(\frac{\partial f}{\partial u_2}\right)_{ss}\!\!u_2' + \dots
