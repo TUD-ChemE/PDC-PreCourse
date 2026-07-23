@@ -78,9 +78,10 @@ V\frac{dc}{dt} + \frac{2}{3}Qc = Qc_0 - \frac{Qc}{3}
 $  
 
 This gives a separable ODE:  
-$
+
+$$
 \frac{dc}{dt} = \frac{Q(c_0-c)}{V(t)}, \qquad \text{with } V(t) = 0.2V_0 + \frac{2}{3}Qt.
-$
+$$
 
 Separating variables:  
 $
@@ -168,9 +169,11 @@ Determine the new steady state operating point $\bar{V_{ss}}$. Then determine ho
 :label: SolutionISV8
 :class: dropdown
 Substituting $k' = \dfrac{4}{3}\dfrac{Q}{V_0}$ into the differential equation from part {numref}`ExerciseISV6` gives:  
-$
+
+$$
   \frac{dV}{dt} = Q - \frac{4}{3}\frac{Q}{V_0}V(t), \qquad \text{with } V(0) = 0.6V_0,
-$  
+$$
+
 where $V(0) = 0.6V_0$ is the volume at the moment the blockage occurs, i.e. the operating point found in part {numref}`ExerciseISV7`.
 
 **New operating point:** Setting $\dfrac{dV}{dt} = 0$:  

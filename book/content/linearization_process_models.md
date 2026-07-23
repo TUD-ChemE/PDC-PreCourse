@@ -3,28 +3,28 @@
 ## Theory
 More complicated and comprehensive process models are often nonlinear. Unfortunately, nonlinear models are quite difficult to work in with directly when designing a controller for the process. To make this task easier, the nonlinear model is usually approximated as a **linear model** that is valid in the vicinity of a chosen steady state operating point. The steps for performing this linearization are shown below.
 
-### Step 1: Write the model as a function of states and inputs {-}
+### Step 1: Write the model as a function of states and inputs
 Suppose a state variable $x$ evolves according to a nonlinear differential equation that depends on one or more state variables and input variables. We write the right-hand side as a function $f$:  
 $
 \frac{dx}{dt} = f(x_1, x_2, \dots, u_1, u_2, \dots),
 $
 where $x_1, x_2, \dots$ are the state variables and $u_1, u_2, \dots$ are the input variables (manipulated and/or disturbance variables) that $f$ depends on.
 
-### Step 2: Determine the operating point {-}
-The operating point is the steady state \\ $(\bar{x}_1, \bar{x}_2, \dots, \bar{u}_1, \bar{u}_2, \dots)$ around which we want to linearize. At this point, the process is at rest, so all derivatives are zero:  
+### Step 2: Determine the operating point
+The operating point is the steady state $(\bar{x}_1, \bar{x}_2, \dots, \bar{u}_1, \bar{u}_2, \dots)$ around which we want to linearize. At this point, the process is at rest, so all derivatives are zero:  
 $
 0 = f(\bar{x}_1, \bar{x}_2, \dots, \bar{u}_1, \bar{u}_2, \dots) \equiv f_{ss}.
 $
 
-### Step 3: Expand $f$ in a multivariable Taylor series {-}
-Close to the operating point, $f$ can be approximated by its value at steady state, plus a correction term for every variable it depends on. Each correction term is the partial derivative of $f$ with respect to that variable evaluated at the operating point  ($\frac{\partial f}{\partial j}\right_{ss}$, where j is the variable of interest), multiplied by how far that variable has moved away from its steady-state value:  
+### Step 3: Expand $f$ in a multivariable Taylor series
+Close to the operating point, $f$ can be approximated by its value at steady state, plus a correction term for every variable it depends on. Each correction term is the partial derivative of $f$ with respect to that variable evaluated at the operating point ($\left(\frac{\partial f}{\partial x}\right)_{ss}$, where j is the variable of interest), multiplied by how far that variable has moved away from its steady-state value:  
 $
 f \approx f_{ss} + \left(\frac{\partial f}{\partial x_1}\right)_{ss}\!\!(x_1 - \bar{x}_1) + \left(\frac{\partial f}{\partial x_2}\right)_{ss}\!\!(x_2 - \bar{x}_2) + \dots + \left(\frac{\partial f}{\partial u_1}\right)_{ss}\!\!(u_1 - \bar{u}_1) + \left(\frac{\partial f}{\partial u_2}\right)_{ss}\!\!(u_2 - \bar{u}_2) + \dots
 $  
 
 This is simply a first-order Taylor expansion: we keep only the constant and linear terms, and discard all higher-order (quadratic and above) terms, which is justified as long as the true variables stay close to the operating point.
 
-### Step 4: Introduce deviation variables {-}
+### Step 4: Introduce deviation variables
 To simplify the notation, we define **deviation variables** that measure the distance of each variable from its steady-state value, denoted with a prime:  
 $
 x_1' = x_1 - \bar{x}_1, \qquad x_2' = x_2 - \bar{x}_2, \qquad u_1' = u_1 - \bar{u}_1, \qquad u_2' = u_2 - \bar{u}_2, \quad \dots
@@ -32,7 +32,7 @@ $
 
 Since $\bar{x}_1, \bar{x}_2, \dots$ are constants, we also have $\dfrac{dx}{dt} = \dfrac{dx'}{dt}$.
 
-### Step 5: Assemble the linearized equation {-}
+### Step 5: Assemble the linearized equation
 Using $f_{ss} = 0$ from Step 2, and substituting the deviation variables from Step 4 into the expansion from Step 3, we obtain the **linearized model**:  
 $
 \frac{dx'}{dt} = \left(\frac{\partial f}{\partial x_1}\right)_{ss}\!\!x_1' + \left(\frac{\partial f}{\partial x_2}\right)_{ss}\!\!x_2' + \dots + \left(\frac{\partial f}{\partial u_1}\right)_{ss}\!\!u_1' + \left(\frac{\partial f}{\partial u_2}\right)_{ss}\!\!u_2' + \dots
@@ -79,7 +79,7 @@ For each input variable, indicate whether it should be considered a manipulated 
 :class: dropdown
 The **state variables** are the concentrations inside the reactor, $c_A(t)$ and $c_X(t)$. The **input variables** are the flow rate $\phi_{V}$ and the inlet concentrations $c_{A,in}$ and $c_{X,in}$.
 
-Of these inputs, $\phi_{V,in}$ is the **manipulated variable**: the problem statement tells us directly that it is set by a flow controller, i.e.\ it can be actively adjusted to influence the process. The inlet concentrations $c_{A,in}$ and $c_{X,in}$ are **disturbance variables**: they are set by an upstream process (e.g.\ the feed preparation) and are not adjustable by a controller acting on this reactor.
+Of these inputs, $\phi_{V,in}$ is the **manipulated variable**: the problem statement tells us directly that it is set by a flow controller, i.e. it can be actively adjusted to influence the process. The inlet concentrations $c_{A,in}$ and $c_{X,in}$ are **disturbance variables**: they are set by an upstream process (e.g. the feed preparation) and are not adjustable by a controller acting on this reactor.
 ```
 
 ```{exercise}
@@ -155,13 +155,13 @@ $
 
 Note that $f$ does not actually depend on $c_{A,in}$ directly, since $c_{A,in}$ only enters the mass balance for A; we include it here as an argument of $f$ for generality, and its partial derivative will simply turn out to be zero.
 
-A first-order Taylor series expansion of $f$ around the steady-state operating point \\$(\bar{c}_A, \bar{c}_X, \bar{\phi}_V, \bar{c}_{A,in}, \bar{c}_{X,in})$ approximates $f$ as its value at steady state, plus a correction term for each variable that is proportional to how far that variable has moved from its steady-state value:  
+A first-order Taylor series expansion of $f$ around the steady-state operating point $(\bar{c}_A, \bar{c}_X, \bar{\phi}_V, \bar{c}_{A,in}, \bar{c}_{X,in})$ approximates $f$ as its value at steady state, plus a correction term for each variable that is proportional to how far that variable has moved from its steady-state value:  
 $
 f \approx f_{ss} + \left(\frac{\partial f}{\partial c_A}\right)_{ss}\!\!(c_A - \bar{c}_A) + \left(\frac{\partial f}{\partial c_X}\right)_{ss}\!\!(c_X - \bar{c}_X) + \left(\frac{\partial f}{\partial \phi_V}\right)_{ss}\!\!(\phi_V - \bar{\phi}_V)$  
 $+ \left(\frac{\partial f}{\partial c_{A,in}}\right)_{ss}\!\!(c_{A,in} - \bar{c}_{A,in}) + \left(\frac{\partial f}{\partial c_{X,in}}\right)_{ss}\!\!(c_{X,in} - \bar{c}_{X,in}).
 $
 
-By definition, at steady state the derivative is zero, so $f_{ss} = 0$. Introducing deviation variables (e.g.\ $c_A' = c_A - \bar{c}_A$), and using $\frac{dc_X}{dt} = \frac{dc_X'}{dt}$ since $\bar{c}_X$ is constant, the linearized equation becomes:  
+By definition, at steady state the derivative is zero, so $f_{ss} = 0$. Introducing deviation variables (e.g. $c_A' = c_A - \bar{c}_A$), and using $\frac{dc_X}{dt} = \frac{dc_X'}{dt}$ since $\bar{c}_X$ is constant, the linearized equation becomes:  
 $
 \frac{dc_X'}{dt} = \left(\frac{\partial f}{\partial c_A}\right)_{ss}\!\!c_A' + \left(\frac{\partial f}{\partial c_X}\right)_{ss}\!\!c_X' + \left(\frac{\partial f}{\partial \phi_V}\right)_{ss}\!\!\phi_V' + \left(\frac{\partial f}{\partial c_{A,in}}\right)_{ss}\!\!c_{A,in}' + \left(\frac{\partial f}{\partial c_{X,in}}\right)_{ss}\!\!c_{X,in}'.
 $  
@@ -236,7 +236,7 @@ Because the feed enters at 350K and the reactor operates at 350K, the sensible h
 $ 0 = 0 + (50.00 \text{ kJ/mol})(2000 \text{ L})(3.09 \text{ min}^{-1})(0.184 \text{ mol/L}) + Q $  
 $ 0 = 56,856 \text{ kJ/min} + Q \implies Q = -56,856 \text{ kJ/min} $
 
-The reactor requires a **cooling duty** of **56,876 kJ/min**.
+The reactor requires a **cooling duty** of **56,856 kJ/min**.
 ```
 
 ```{exercise}
@@ -255,7 +255,8 @@ Let's define the right-hand side as a nonlinear function $f$ of the state variab
 $ \frac{dT}{dt} = f(T, C_A, q, T_0, Q) $
 
 A first-order Taylor series expansion around the steady-state operating point $(\bar{T}, \bar{C}_A, \bar{q}, \bar{T}_0, \bar{Q})$ is:  
-$ f \approx f_{ss} + \left( \frac{\partial f}{\partial T} \right)_{ss} (T - \bar{T}) + \left( \frac{\partial f}{\partial C_A} \right)_{ss} (C_A - \bar{C}_A) + \left( \frac{\partial f}{\partial q} \right)_{ss} (q - \bar{q}) + \left( \frac{\partial f}{\partial T_0} \right)_{ss} (T_0 - \bar{T}_0) + \left( \frac{\partial f}{\partial Q} \right)_{ss} (Q - \bar{Q}) $
+$ f \approx f_{ss} + \left( \frac{\partial f}{\partial T} \right)_{ss} (T - \bar{T}) + \left( \frac{\partial f}{\partial C_A} \right)_{ss} (C_A - \bar{C}_A) + \left( \frac{\partial f}{\partial q} \right)_{ss} (q - \bar{q})$  
+$ + \left( \frac{\partial f}{\partial T_0} \right)_{ss} (T_0 - \bar{T}_0) + \left( \frac{\partial f}{\partial Q} \right)_{ss} (Q - \bar{Q}) $
 
 By definition, at steady state, the derivative is zero, so $f_{ss} = 0$. Introducing deviation variables (e.g., $T' = T - \bar{T}$), the linearized equation becomes:  
 $ \frac{dT'}{dt} = \left( \frac{\partial f}{\partial T} \right)_{ss} T' + \left( \frac{\partial f}{\partial C_A} \right)_{ss} C_A' + \left( \frac{\partial f}{\partial q} \right)_{ss} q' + \left( \frac{\partial f}{\partial T_0} \right)_{ss} T_0' + \left( \frac{\partial f}{\partial Q} \right)_{ss} Q' $
