@@ -3,8 +3,8 @@
 ## Theory
 
 Before setting up a model, it is useful to classify the variables in a process. A process is generally described by a set of **state variables**: quantities such as a concentration, temperature, or liquid level that describe the condition of the process at any given time. The state variables change as a result of **input variables**, quantities that act on the process from outside. Depending on whether or not an input can be adjusted by the control system, we distinguish between two types:
-- **Manipulated variable:** an input variable that can be actively adjusted in order to influence the process. Examples include the inlet flow rate, the coolant flow rate, or the heat input to the reactor.
-- **Disturbance variable:** an input variable that affects the process but cannot be directly adjusted by the control system. Disturbances often originate outside the process and can be measured or unmeasured, and constant or time-varying. Examples include the feed concentration, the feed temperature, or the ambient temperature surrounding the reactor.
+- **Manipulated variable:** an input variable that can be actively adjusted in order to influence the process. This could for example be the inlet flow rate, provided it can be dynamically adjusted (e.g., using a control valve).
+- **Disturbance variable:** an input variable that affects the process but cannot be directly adjusted by the control system. Disturbances often originate outside the process and can be measured or unmeasured, and constant or time-varying. A common example is feed concentration, given that it is determined upstream of the process of interest.
 
 Among the state variables, the one (or combination) whose value we want to keep at, or steer towards, a desired setpoint is called the **controlled variable**. This is typically a measured process output.
 
@@ -32,12 +32,12 @@ Sketch of CSTR.
 
 ```{exercise}
 :label: ExerciseISV2
-Identify the state variables and the disturbance variables of the process.
+Identify the state variables and the disturbance variables of the process, given that both inlet and outlet flows cannot be controlled, and the concentration is set upstream of the process.
 ```
 ```{solution} ExerciseISV2
 :label: SolutionISV2
 :class: dropdown
-The **state variables** are the volume of liquid in the tank, $V(t)$, and the salt concentration in the tank, $c(t)$: these together describe the condition of the process at any point in time. The **disturbance variables** are the inlet concentration $c_0$ and the inlet flow rate $Q$, since these are imposed by the upstream process and are not adjusted by anything within this system. Note that, as described, the process has no manipulated variable.
+The **state variables** are the volume of liquid in the tank, $V(t)$, and the salt concentration in the tank, $c(t)$: these together describe the condition of the process at any point in time. The **disturbance variables** are the inlet concentration $c_0$ and the inlet flow rate $Q$, since these are imposed by the upstream process and are not adjusted by anything within this system. The outlet flow rate, $Q/3$, is also a disturbance variable. Note that, as described, the process has no manipulated variable.
 ```
 
 ```{exercise}
@@ -120,9 +120,9 @@ $
 :label: ExerciseISV6
 Suppose now that, instead of a constant outlet flow rate of $Q/3$, the outlet valve is such that the outlet flow rate depends on the liquid volume in the tank, according to  
 
-$
+$$
 Q_{\text{out}}(t) = k V(t), \qquad \text{with } k = \frac{5}{3}\frac{Q}{V_0}
-$
+$$
 
 where $k$ has been chosen such that $Q_{\text{out}}(0) = Q/3$, consistent with the original setup. Update the differential equation for the volume from part {numref}`ExerciseISV3` to account for this.
 ```
@@ -130,11 +130,12 @@ where $k$ has been chosen such that $Q_{\text{out}}(0) = Q/3$, consistent with t
 :label: SolutionISV6
 :class: dropdown
 With the outlet flow rate now given by $Q_{\text{out}}(t) = kV(t)$, the total mass balance from part {numref}`ExerciseISV3` is updated to:  
-$
+
+$$
   \frac{d}{dt}(\rho V) = \rho Q - \rho k V(t)
   \quad\Longrightarrow\quad
   \frac{dV}{dt} = Q - kV(t), \qquad \text{with } V(0) = 0.2V_0
-$
+$$
 ```
 
 ```{exercise}
@@ -144,7 +145,8 @@ Determine the steady state operating point $V_{ss}$: the volume at which the out
 ```{solution} ExerciseISV7
 :label: SolutionISV7
 :class: dropdown
-The operating point is the steady state of the volume dynamics, i.e.\ the point where $\dfrac{dV}{dt} = 0$:  
+“In
+this case the operating point is at a steady state of the system, so the point where $\dfrac{dV}{dt} = 0$:  
 $
   0 = Q - kV_{ss} \quad\Longrightarrow\quad V_{ss} = \frac{Q}{k} = \frac{Q}{\tfrac{5}{3}\tfrac{Q}{V_0}} = \frac{3}{5}V_0 = 0.6V_0
 $
@@ -160,7 +162,7 @@ $
 k' = \frac{4}{3}\frac{Q}{V_0}.
 $
 
-Determine the new steady state operating point $V_{ss}'$. Then determine how long it takes, from the moment the blockage occurs, for the volume to settle to within 5\% of this new operating point.
+Determine the new steady state operating point $\bar{V_{ss}}$. Then determine how long it takes, from the moment the blockage occurs, for the volume to settle to within 5\% of this new operating point.
 ```
 ```{solution} ExerciseISV8
 :label: SolutionISV8

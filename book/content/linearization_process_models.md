@@ -17,7 +17,7 @@ $
 $
 
 ### Step 3: Expand $f$ in a multivariable Taylor series {-}
-Close to the operating point, $f$ can be approximated by its value at steady state, plus a correction term for every variable it depends on. Each correction term is the partial derivative of $f$ with respect to that variable evaluated at the operating point, multiplied by how far that variable has moved away from its steady-state value:  
+Close to the operating point, $f$ can be approximated by its value at steady state, plus a correction term for every variable it depends on. Each correction term is the partial derivative of $f$ with respect to that variable evaluated at the operating point  ($\frac{\partial f}{\partial j}\right_{ss}$, where j is the variable of interest), multiplied by how far that variable has moved away from its steady-state value:  
 $
 f \approx f_{ss} + \left(\frac{\partial f}{\partial x_1}\right)_{ss}\!\!(x_1 - \bar{x}_1) + \left(\frac{\partial f}{\partial x_2}\right)_{ss}\!\!(x_2 - \bar{x}_2) + \dots + \left(\frac{\partial f}{\partial u_1}\right)_{ss}\!\!(u_1 - \bar{u}_1) + \left(\frac{\partial f}{\partial u_2}\right)_{ss}\!\!(u_2 - \bar{u}_2) + \dots
 $  
@@ -143,7 +143,7 @@ $
 
 ```{exercise}
 :label: ExerciseLin5
-The concentration of X, $c_X$, is the controlled variable of this process: it is the quantity we ultimately want to keep at the desired setpoint. To design a controller for it, we must understand how $c_X$ responds to changes in the state and input variables. The mass balance for X is nonlinear due to the reaction term. Linearize this equation using a multi-variable Taylor series expansion around the steady-state operating point $(\bar{c}_A, \bar{c}_X, \bar{\phi}_V, \bar{c}_{A,in}, \bar{c}_{X,in})$, and introduce deviation variables (e.g.\ $c_A'(t) = c_A(t) - \bar{c}_A$) to express the result.
+The mass balance for X is nonlinear due to the reaction term. Linearize this equation using a multi-variable Taylor series expansion around the steady-state operating point $(\bar{c}_A, \bar{c}_X, \bar{\phi}_V, \bar{c}_{A,in}, \bar{c}_{X,in})$, and introduce deviation variables (e.g. $c_A'(t) = c_A(t) - \bar{c}_A$) to express the result.
 ```
 ```{solution} ExerciseLin5
 :label: SolutionLin5
@@ -157,8 +157,8 @@ Note that $f$ does not actually depend on $c_{A,in}$ directly, since $c_{A,in}$ 
 
 A first-order Taylor series expansion of $f$ around the steady-state operating point \\$(\bar{c}_A, \bar{c}_X, \bar{\phi}_V, \bar{c}_{A,in}, \bar{c}_{X,in})$ approximates $f$ as its value at steady state, plus a correction term for each variable that is proportional to how far that variable has moved from its steady-state value:  
 $
-f \approx f_{ss} + \left(\frac{\partial f}{\partial c_A}\right)_{ss}\!\!(c_A - \bar{c}_A) + \left(\frac{\partial f}{\partial c_X}\right)_{ss}\!\!(c_X - \bar{c}_X) + \left(\frac{\partial f}{\partial \phi_V}\right)_{ss}\!\!(\phi_V - \bar{\phi}_V) + \]
-\[\left(\frac{\partial f}{\partial c_{A,in}}\right)_{ss}\!\!(c_{A,in} - \bar{c}_{A,in}) + \left(\frac{\partial f}{\partial c_{X,in}}\right)_{ss}\!\!(c_{X,in} - \bar{c}_{X,in}).
+f \approx f_{ss} + \left(\frac{\partial f}{\partial c_A}\right)_{ss}\!\!(c_A - \bar{c}_A) + \left(\frac{\partial f}{\partial c_X}\right)_{ss}\!\!(c_X - \bar{c}_X) + \left(\frac{\partial f}{\partial \phi_V}\right)_{ss}\!\!(\phi_V - \bar{\phi}_V)$  
+$+ \left(\frac{\partial f}{\partial c_{A,in}}\right)_{ss}\!\!(c_{A,in} - \bar{c}_{A,in}) + \left(\frac{\partial f}{\partial c_{X,in}}\right)_{ss}\!\!(c_{X,in} - \bar{c}_{X,in}).
 $
 
 By definition, at steady state the derivative is zero, so $f_{ss} = 0$. Introducing deviation variables (e.g.\ $c_A' = c_A - \bar{c}_A$), and using $\frac{dc_X}{dt} = \frac{dc_X'}{dt}$ since $\bar{c}_X$ is constant, the linearized equation becomes:  
@@ -232,9 +232,9 @@ The conversion of component A is 95.4\%. Determine the cooling duty $Q$ (in kJ/m
 Set up the steady-state energy balance to find $Q$. Let $Q$ be the heat added to the system (negative means cooling). Note that $\rho = 1.15 \text{ g/cm}^3 = 1150 \text{ g/L}$:  
 $ 0 = q \rho C_p (T_0 - \bar{T}) + (-\Delta H_R) V k(\bar{T}) \bar{C}_A + Q $
 
-Because the feed enters at 350K and the reactor operates at 350K, the sensible heat term ($T_0 - \bar{T}$) is zero. Additionally, the reactor concentration $\bar{C}_A=(1-0.954)\times C_{CA0}=0.184$ mol/L:  
+Because the feed enters at 350K and the reactor operates at 350K, the sensible heat term ($T_0 - \bar{T}$) is zero. Additionally, the reactor concentration $\bar{C}_A=(1-0.954)\times C_{A0}=0.184$ mol/L:  
 $ 0 = 0 + (50.00 \text{ kJ/mol})(2000 \text{ L})(3.09 \text{ min}^{-1})(0.184 \text{ mol/L}) + Q $  
-$ 0 = 56,876 \text{ kJ/min} + Q \implies Q = -56,876 \text{ kJ/min} $
+$ 0 = 56,856 \text{ kJ/min} + Q \implies Q = -56,856 \text{ kJ/min} $
 
 The reactor requires a **cooling duty** of **56,876 kJ/min**.
 ```
