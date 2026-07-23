@@ -78,7 +78,6 @@ V\frac{dc}{dt} + \frac{2}{3}Qc = Qc_0 - \frac{Qc}{3}
 $  
 
 This gives a separable ODE:  
-
 $$
 \frac{dc}{dt} = \frac{Q(c_0-c)}{V(t)}, \qquad \text{with } V(t) = 0.2V_0 + \frac{2}{3}Qt.
 $$
@@ -93,16 +92,16 @@ $
 -\ln(c_0 - c) = \frac{3}{2}\ln\!\left(0.2V_0 + \frac{2}{3}Qt\right) + C
 $  
 
-$
+$$
 c_0 - c = C_{\text{int}}\left(0.2V_0 + \frac{2}{3}Qt\right)^{-3/2}
-$  
+$$  
 
 Apply the initial condition $c(t=0) = 0$:  
-$
+$$
 c_0 - 0 = C_{\text{int}}(0.2V_0)^{-3/2}
 \quad\Rightarrow\quad
 C_{\text{int}} = c_0(0.2V_0)^{3/2}
-$  
+$$
 
 Substitute back:  
 $
